@@ -1,8 +1,15 @@
+import { useSession } from 'next-auth/react';
+import { NoUser, UserCard } from '../components';
+
 const Index = () => {
+	const { data: session } = useSession();
 	return (
-		<>
-			<h1 className='text-center mt-10'>I am HOME</h1>
-		</>
+		<div className='flex justify-center'>
+			<div>
+				<h1 className='my-10 text-5xl'>I am Home</h1>
+				{session ? <UserCard {...session.user} /> : <NoUser />}
+			</div>
+		</div>
 	);
 };
 
